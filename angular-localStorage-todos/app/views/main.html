@@ -2,14 +2,16 @@
   <h2>My todos</h2>
 
   <!-- Todos input -->
-  <form role="form" ng-submit="addTodo()">
+  <form role="form" ng-submit="addTodo()" name="todoForm" novalidate>
     <div class="row">
       <div class="input-group">
-        <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
+        <input type="text" ng-model="todo"  name="todo" placeholder="What needs to be done?" class="form-control" required autocomplete="off">
         <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Add">
+          <input type="submit" class="btn btn-primary" value="Add" ng-disabled="todoForm.todo.$dirty && todoForm.todo.$invalid">
         </span>
-      </div>
+      </div>      
+      <span style="color:red;" ng-show="duplicate==true">You've entered a duplicate todo!!.</span>
+      <span style="color:red;display: none;" id="err_null">Todo can not be empty.</span>
     </div>
   </form>
   <p></p>
